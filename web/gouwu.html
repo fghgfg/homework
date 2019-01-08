@@ -721,119 +721,7 @@
          </div>
 </body>
  <script type="text/javascript">
-
-          window.onload = function(){
-    var lay = getId("lay"),
-        smallImg = getId("smallImg"),
-        bigImg = getId("bigImg");
-    var imgB = bigImg.children[0]; //大图中的图片
-    var scale = 3;        //缩放倍数  可调整
-    var w = smallImg.offsetWidth; //小图的宽高
-    var h = smallImg.offsetHeight;
-    lay.style.width = 120 + "px";
-    lay.style.height = 120 + "px";
-
-    imgB.style.width = w * scale + "px";
-    imgB.style.height = h * scale + "px";
-    smallImg.onmouseover = function(){
-        lay.style.display = "block";
-        bigImg.style.display = "block";
-    }    
-    smallImg.onmouseout = function(){
-        lay.style.display = "none";
-        bigImg.style.display = "none";
-    }
-    smallImg.onmousemove = function(e){
-        e = e || window.event;
-        var x = e.clientX - lay.offsetWidth-150;
-        var y = e.clientY - lay.offsetHeight-180;
-        if(x <= 0){            //左侧边界判断
-            x = 0;
-        }
-        if(y <= 0){            //顶部边界判断
-            y = 0;
-        }
-        if(x >= smallImg.offsetWidth - lay.offsetWidth ){
-            x = smallImg.offsetWidth - lay.offsetWidth;       //右侧边界判断
-        }
-        if(y >= smallImg.offsetHeight - lay.offsetHeight ){
-            y = smallImg.offsetHeight - lay.offsetHeight;      //底部边界判断
-        }
-        lay.style.left = x + "px";
-        lay.style.top = y + "px";
-        imgB.style.left = -x*scale + "px";    //图片默认位置为0 0左上角位置 需要反向才能两者相对显示
-        imgB.style.top = -y*scale + "px";
-            }    
-        }
-    function fangda(){
-    var lay = getId("lay"),
-        smallImg = getId("smallImg"),
-        bigImg = getId("bigImg");
-    var imgB = bigImg.children[0]; //大图中的图片
-    var scale = 3;        //缩放倍数  可调整
-    var w = smallImg.offsetWidth; //小图的宽高
-    var h = smallImg.offsetHeight;
-    lay.style.width = 120 + "px";
-    lay.style.height = 120 + "px";
-    imgB.style.width = w * scale + "px";
-    imgB.style.height = h * scale + "px";
-    smallImg.onmouseover = function(){
-        lay.style.display = "block";
-        bigImg.style.display = "block";
-    }    
-    smallImg.onmouseout = function(){
-        lay.style.display = "none";
-        bigImg.style.display = "none";
-    }
-    smallImg.onmousemove = function(e){
-        e = e || window.event;
-        var x = e.clientX - lay.offsetWidth-150;
-        var y = e.clientY - lay.offsetHeight-180;
-        if(x <= 0){            //左侧边界判断
-            x = 0;
-        }
-        if(y <= 0){            //顶部边界判断
-            y = 0;
-        }
-        if(x >= smallImg.offsetWidth - lay.offsetWidth ){
-            x = smallImg.offsetWidth - lay.offsetWidth;       //右侧边界判断
-        }
-        if(y >= smallImg.offsetHeight - lay.offsetHeight ){
-            y = smallImg.offsetHeight - lay.offsetHeight;      //底部边界判断
-        }
-        lay.style.left = x + "px";
-        lay.style.top = y + "px";
-        imgB.style.left = -x*scale + "px";    //图片默认位置为0 0左上角位置 需要反向才能两者相对显示
-        imgB.style.top = -y*scale + "px";
-            }    
-        }
-        function getId(id){
-            return document.getElementById(id);
-        }
-        function showimg(img) {
-            document.getElementById("smallImg").innerHTML="<img  src='"+img.getAttribute("original")+"'><div id='lay'></div><div id='bigImg'><img src='"+img.getAttribute("original")+"'></div>";
-            fangda();
-        }
-        function guige1(){
-        	
-        	var box=document.getElementById("ba");
-        	var box1=document.getElementById("bc");
-        	document.getElementById("ac").innerHTML='"150ml"';
-        	box.style.background="white url(img/duigou.png) no-repeat 48px 20px";
-        	box.style.borderColor="#FF1493";
-        	box1.style.borderColor="";
-        	box1.style.background="";  
-        }
-        function guige2(){
-        	var box1=document.getElementById("ba");
-        	var box=document.getElementById("bc");
-        	document.getElementById("ac").innerHTML='"300ml"';
-        	box.style.background="white url(img/duigou.png) no-repeat 48px 20px";
-        	box.style.borderColor="#FF1493";
-        	box1.style.borderColor="white";
-        	box1.style.backgroundImage="none";
-        }
-         function getPosition() {
+  function getPosition() {
              var top = document.documentElement.scrollTop;
              var left = document.documentElement.scrollLeft;
              var height = document.documentElement.clientHeight;
@@ -846,43 +734,57 @@
              top=200;
              return { top: top, left: left, height: height, width: width };
          }
-         //屏蔽输入，显示蒙板
+      
         function showMask(id) {
              var obj = document.getElementById(id);
              obj.style.width = document.body.clientWidth;
              obj.style.height = document.body.clientHeight;
              obj.style.display = "block";
          }
-         //隐藏蒙板
-        function hideMask(id) {
-             document.getElementById(id).style.display = "none";
-         }
-         //显示登录
-        function showPop(id) {
-             showMask('mask');
-             var width = 400;  //弹出框的宽度
-            var height = 200;  //弹出框的高度
-            var obj = document.getElementById(id);
-             obj.style.display = "block";
-             obj.style.position = "fixed";
-             obj.style.zindex = "10";
-             obj.style.overflow = "hidden";
-             obj.style.width = width + "px";
-             obj.style.height = height + "px";
-             var Position = getPosition();
-             leftadd = (Position.width - width) / 2;
-             topadd = (Position.height - height) / 2;
-             obj.style.top = (Position.top + topadd) + "px";
-             obj.style.left = (Position.left + leftadd) + "px";
-             window.onscroll = function() {
-                 var Position = getPosition();
-                 obj.style.top = (Position.top + topadd) + "px";
-                 obj.style.left = (Position.left + leftadd) + "px";
-             };
-             
-         }
-         //隐含
-        function hidePop(id) {
+          window.onload = function(){
+    var lay =document.getElementById("lay"),
+        smallImg = document.getElementById("smallImg"),
+        bigImg = document.getElementById("bigImg");
+    var imgB = bigImg.children[0]; 
+    var scale = 3;        
+    var w = smallImg.offsetWidth;
+    var h = smallImg.offsetHeight;
+    lay.style.width = 120 + "px";
+    lay.style.height = 120 + "px";
+
+    imgB.style.width = w * scale + "px";
+    imgB.style.height = h * scale + "px";
+    smallImg.onmouseover = function(){
+        lay.style.display = "block";
+        bigImg.style.display = "block";
+    }    
+    smallImg.onmouseout = function(){
+        lay.style.display = "none";
+        bigImg.style.display = "none";
+    }
+    smallImg.onmousemove = function(e){
+        e = e || window.event;
+        var x = e.clientX - lay.offsetWidth-150;
+        var y = e.clientY - lay.offsetHeight-180;
+        if(x <= 0){           
+            x = 0;
+        }
+        if(y <= 0){          
+            y = 0;
+        }
+        if(x >= smallImg.offsetWidth - lay.offsetWidth ){
+            x = smallImg.offsetWidth - lay.offsetWidth;      
+        }
+        if(y >= smallImg.offsetHeight - lay.offsetHeight ){
+            y = smallImg.offsetHeight - lay.offsetHeight;      
+        }
+        lay.style.left = x + "px";
+        lay.style.top = y + "px";
+        imgB.style.left = -x*scale + "px";    
+        imgB.style.top = -y*scale + "px";
+            }    
+        }
+	   function hidePop(id) {
          hideMask('mask');
              document.getElementById(id).style.display = "none";
          } 
@@ -905,6 +807,103 @@
             else {
                 input_num.value = parseInt(input_num.value) - 1;
             }
+        }
+    function fangda(){
+    var lay = document.getElementById("lay"),
+        smallImg =document.getElementById("smallImg"),
+        bigImg = document.getElementById("bigImg");
+    var imgB = bigImg.children[0]; 
+    var scale = 3;     
+    var w = smallImg.offsetWidth; 
+    var h = smallImg.offsetHeight;
+    lay.style.width = 120 + "px";
+    lay.style.height = 120 + "px";
+    imgB.style.width = w * scale + "px";
+    imgB.style.height = h * scale + "px";
+    smallImg.onmouseover = function(){
+        lay.style.display = "block";
+        bigImg.style.display = "block";
+    }    
+    smallImg.onmouseout = function(){
+        lay.style.display = "none";
+        bigImg.style.display = "none";
+    }
+    smallImg.onmousemove = function(e){
+        e = e || window.event;
+        var x = e.clientX - lay.offsetWidth-150;
+        var y = e.clientY - lay.offsetHeight-180;
+        if(x <= 0){            
+            x = 0;
+        }
+        if(y <= 0){           
+            y = 0;
+        }
+        if(x >= smallImg.offsetWidth - lay.offsetWidth ){
+            x = smallImg.offsetWidth - lay.offsetWidth;      
+        }
+        if(y >= smallImg.offsetHeight - lay.offsetHeight ){
+            y = smallImg.offsetHeight - lay.offsetHeight;     
+        }
+        lay.style.left = x + "px";
+        lay.style.top = y + "px";
+        imgB.style.left = -x*scale + "px";  
+        imgB.style.top = -y*scale + "px";
+            }    
+        }
+     
+        function showimg(img) {
+            document.getElementById("smallImg").innerHTML="<img  src='"+img.getAttribute("original")+"'><div id='lay'></div><div id='bigImg'><img src='"+img.getAttribute("original")+"'></div>";
+            fangda();
+        }
+        function guige1(){
+        	
+        	var box=document.getElementById("ba");
+        	var box1=document.getElementById("bc");
+        	document.getElementById("ac").innerHTML='"150ml"';
+        	box.style.background="white url(img/duigou.png) no-repeat 48px 20px";
+        	box.style.borderColor="#FF1493";
+        	box1.style.borderColor="";
+        	box1.style.background="";  
+        }
+     
+       
+         
+        function hideMask(id) {
+             document.getElementById(id).style.display = "none";
+         }
+       
+        function showPop(id) {
+             showMask('mask');
+             var width = 400; 
+            var height = 200; 
+            var obj = document.getElementById(id);
+             obj.style.display = "block";
+             obj.style.position = "fixed";
+             obj.style.zindex = "10";
+             obj.style.overflow = "hidden";
+             obj.style.width = width + "px";
+             obj.style.height = height + "px";
+             var Position = getPosition();
+             leftadd = (Position.width - width) / 2;
+             topadd = (Position.height - height) / 2;
+             obj.style.top = (Position.top + topadd) + "px";
+             obj.style.left = (Position.left + leftadd) + "px";
+             window.onscroll = function() {
+                 var Position = getPosition();
+                 obj.style.top = (Position.top + topadd) + "px";
+                 obj.style.left = (Position.left + leftadd) + "px";
+             };
+             
+         }
+       
+         function guige2(){
+        	var box1=document.getElementById("ba");
+        	var box=document.getElementById("bc");
+        	document.getElementById("ac").innerHTML='"300ml"';
+        	box.style.background="white url(img/duigou.png) no-repeat 48px 20px";
+        	box.style.borderColor="#FF1493";
+        	box1.style.borderColor="white";
+        	box1.style.backgroundImage="none";
         }
  </script>
 </html>
